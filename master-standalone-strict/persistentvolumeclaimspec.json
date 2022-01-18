@@ -2,7 +2,7 @@
   "description": "PersistentVolumeClaimSpec describes the common attributes of storage devices and allows a Source for provider-specific attributes",
   "properties": {
     "accessModes": {
-      "description": "AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+      "description": "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
       "items": {
         "type": [
           "string",
@@ -41,6 +41,37 @@
         "object",
         "null"
       ],
+      "x-kubernetes-map-type": "atomic",
+      "additionalProperties": false
+    },
+    "dataSourceRef": {
+      "description": "TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace.",
+      "properties": {
+        "apiGroup": {
+          "description": "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "kind": {
+          "description": "Kind is the type of resource being referenced",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name is the name of resource being referenced",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "name"
+      ],
+      "type": [
+        "object",
+        "null"
+      ],
+      "x-kubernetes-map-type": "atomic",
       "additionalProperties": false
     },
     "resources": {
@@ -63,7 +94,7 @@
               }
             ]
           },
-          "description": "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+          "description": "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
           "type": [
             "object",
             "null"
@@ -86,7 +117,7 @@
               }
             ]
           },
-          "description": "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+          "description": "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
           "type": [
             "object",
             "null"
@@ -164,10 +195,11 @@
         "object",
         "null"
       ],
+      "x-kubernetes-map-type": "atomic",
       "additionalProperties": false
     },
     "storageClassName": {
-      "description": "Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+      "description": "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
       "type": [
         "string",
         "null"
@@ -181,7 +213,7 @@
       ]
     },
     "volumeName": {
-      "description": "VolumeName is the binding reference to the PersistentVolume backing this claim.",
+      "description": "volumeName is the binding reference to the PersistentVolume backing this claim.",
       "type": [
         "string",
         "null"
